@@ -72,9 +72,18 @@ class BuildItem extends StatelessWidget {
                 height: 150.0,
                 child: ListView.separated(
                   physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) => BuildCategoriesHome(model:ShopCubit.get(context).categoriesHomeModel!.data.data[index]),
+                  itemBuilder:
+                      (context, index) => BuildCategoriesHome(
+                        model:
+                            ShopCubit.get(
+                              context,
+                            ).categoriesHomeModel!.data.data[index],
+                      ),
                   separatorBuilder: (context, index) => SizedBox(width: 20.0),
-                  itemCount: ShopCubit.get(context).categoriesHomeModel!.data.data.length,
+                  itemCount:
+                      ShopCubit.get(
+                        context,
+                      ).categoriesHomeModel!.data.data.length,
                   scrollDirection: Axis.horizontal,
                 ),
               ),
@@ -90,5 +99,4 @@ class BuildItem extends StatelessWidget {
     );
   }
 }
-
 
