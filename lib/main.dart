@@ -69,7 +69,11 @@ class MyApp extends StatelessWidget {
           fromShared: isDark,
         ),),
         BlocProvider(create: (context) => NewsCubit()..getBusiness()..getSports()..getScience(),),
-        BlocProvider(create: (context) => ShopCubit()..getHome()..getCategoriesHome(),),
+        BlocProvider(create: (context) => ShopCubit()
+          ..getHome()
+          ..getCategoriesHome()
+          ..getFavorites(),
+        ),
       ],
       child: BlocConsumer<ThemeModeCubit,ThemeModeStates>(
         listener: (context, state) {

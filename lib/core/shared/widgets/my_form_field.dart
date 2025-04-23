@@ -36,6 +36,9 @@ class MyFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyle(
+        color: ThemeModeCubit.get(context).isDark ? Colors.black : Colors.white,
+      ),
       controller: controller,
       keyboardType: type,
       onTap: onTap,

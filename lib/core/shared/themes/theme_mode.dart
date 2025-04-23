@@ -61,6 +61,9 @@ ThemeData getDarkMode()=>ThemeData(
       fontFamily: 'jannah',
     ),
   ),
+  iconTheme: IconThemeData(
+    color: Colors.white,
+  ),
   progressIndicatorTheme: ProgressIndicatorThemeData(
     color: Colors.deepOrange,
   ),
@@ -125,6 +128,9 @@ ThemeData getLightMode()=>ThemeData(
       fontFamily: 'jannah',
     ),
   ),
+    iconTheme: IconThemeData(
+      color: Colors.black,
+    ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: Colors.blue,
     )
