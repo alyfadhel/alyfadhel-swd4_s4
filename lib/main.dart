@@ -31,6 +31,8 @@ void main() async{
   debugPrint(onBoarding.toString());
   token = CacheHelper.getData(key: 'token');
   debugPrint(token.toString());
+  String? lang = CacheHelper.getData(key: 'language');
+  lang != null ? language = lang : language = 'en';
   Widget widget;
   if(onBoarding != null){
     if(token != null){

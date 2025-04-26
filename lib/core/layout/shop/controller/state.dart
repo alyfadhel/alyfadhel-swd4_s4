@@ -1,4 +1,5 @@
 import 'package:swd4_s4/features/shop/home/data/model/change_favorites_model.dart';
+import 'package:swd4_s4/features/shop/settings/data/model/update_profile_model.dart';
 
 abstract class ShopStates{}
 
@@ -49,4 +50,28 @@ class ShopGetProfileErrorState extends ShopStates{
 
   ShopGetProfileErrorState(this.error);
 }
+
+class ShopGetUpdateProfileLoadingState extends ShopStates{}
+class ShopGetUpdateProfileSuccessState extends ShopStates{
+  final UpdateProfileModel? updateProfileModel;
+
+  ShopGetUpdateProfileSuccessState(this.updateProfileModel);
+}
+class ShopGetUpdateProfileErrorState extends ShopStates{
+  final String error;
+
+  ShopGetUpdateProfileErrorState(this.error);
+}
+
+class ShopGetProductDetailsLoadingState extends ShopStates{}
+class ShopGetProductDetailsSuccessState extends ShopStates{}
+class ShopGetProductDetailsErrorState extends ShopStates{
+  final String error;
+
+  ShopGetProductDetailsErrorState(this.error);
+}
+
+class ShopChangeSmoothIndicatorState extends ShopStates{}
+
+class ShopChangeLanguageState extends ShopStates{}
 
