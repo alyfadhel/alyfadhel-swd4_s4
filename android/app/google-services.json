@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "309222922349",
+    "project_id": "swd4-s4",
+    "storage_bucket": "swd4-s4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309222922349:android:e04c7020e98b1d0dccc764",
+        "android_client_info": {
+          "package_name": "com.example.swd4_s4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu_mOSHZrywwqgX7vzse006gnMtXyG2K4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
