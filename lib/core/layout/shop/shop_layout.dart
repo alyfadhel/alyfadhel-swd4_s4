@@ -5,6 +5,8 @@ import 'package:swd4_s4/core/layout/shop/controller/state.dart';
 import 'package:swd4_s4/core/shared/const/constanse.dart';
 import 'package:swd4_s4/core/shared/network/local/cache_helper.dart';
 import 'package:swd4_s4/core/shared/themes/controller/cubit.dart';
+import 'package:swd4_s4/features/news/search/presentation/screens/search_screen.dart';
+import 'package:swd4_s4/features/shop/search/presentation/screen/shop_search_screen.dart';
 import 'package:swd4_s4/main.dart';
 
 class ShopLayout extends StatelessWidget {
@@ -56,7 +58,10 @@ class ShopLayout extends StatelessWidget {
                 },
                 icon: Icon(Icons.brightness_4_outlined),
               ),
-              IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+              IconButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ShopSearchScreen(),));
+              },
+                  icon: Icon(Icons.search)),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(

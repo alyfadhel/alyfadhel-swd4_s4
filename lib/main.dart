@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +8,8 @@ import 'package:swd4_s4/core/layout/news_layout/controller/cubit.dart';
 import 'package:swd4_s4/core/layout/news_layout/news_layout.dart';
 import 'package:swd4_s4/core/layout/shop/controller/cubit.dart';
 import 'package:swd4_s4/core/layout/shop/shop_layout.dart';
+import 'package:swd4_s4/core/layout/social_layout/controller/cubit.dart';
+import 'package:swd4_s4/core/layout/social_layout/social_layout.dart';
 import 'package:swd4_s4/core/observer/bloc_observer.dart';
 import 'package:swd4_s4/core/shared/const/constanse.dart';
 import 'package:swd4_s4/core/shared/network/local/cache_helper.dart';
@@ -17,11 +20,11 @@ import 'package:swd4_s4/core/shared/themes/controller/state.dart';
 import 'package:swd4_s4/core/shared/themes/theme_mode.dart';
 import 'package:swd4_s4/features/shop/on_boarding/presentatio/screens/on_boarding_screen.dart';
 import 'package:swd4_s4/features/shop/users/login/presntation/screens/shop_login_screen.dart';
-
-
+import 'package:swd4_s4/features/social_app/users/login/presntation/screens/shop_login_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
   ShopHelper.init();
@@ -31,22 +34,29 @@ void main() async{
   debugPrint(onBoarding.toString());
   token = CacheHelper.getData(key: 'token');
   debugPrint(token.toString());
+  uId = CacheHelper.getData(key: 'uId');
   String? lang = CacheHelper.getData(key: 'language');
   lang != null ? language = lang : language = 'en';
   Widget widget;
-  if(onBoarding != null){
-    if(token != null){
-      widget = ShopLayout();
-    }else {
-      widget = ShopLoginScreen();
-    }
-  }else{
-    widget = OnBoardingScreen();
-  }
+  // if(onBoarding != null){
+  //   if(token != null){
+  //     widget = ShopLayout();
+  //   }else {
+  //     widget = ShopLoginScreen();
+  //   }
+  // }else{
+  //   widget = OnBoardingScreen();
+  // }
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
   //   DeviceOrientation.portraitDown,
   // ]);
+
+  if(uId != null){
+    widget = SocialLayout();
+  }else{
+    widget = SocialLoginScreen();
+  }
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -67,6 +77,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers:
       [
+        BlocProvider(create: (context) => SocialCubit()..getUser(),),
         BlocProvider(create: (context) => ThemeModeCubit()..changeThemeMode(
           fromShared: isDark,
         ),),

@@ -12,6 +12,7 @@ import 'package:swd4_s4/features/shop/home/data/model/change_favorites_model.dar
 import 'package:swd4_s4/features/shop/home/data/model/shop_home_model.dart';
 import 'package:swd4_s4/features/shop/home/presentation/screens/shop_home_screen.dart';
 import 'package:swd4_s4/features/shop/product_details/data/model/product_details_model.dart';
+import 'package:swd4_s4/features/shop/search/data/model/search_model.dart';
 import 'package:swd4_s4/features/shop/settings/data/model/profile_model.dart';
 import 'package:swd4_s4/features/shop/settings/data/model/update_profile_model.dart';
 import 'package:swd4_s4/features/shop/settings/presentation/screens/settings_screen.dart';
@@ -39,6 +40,7 @@ class ShopCubit extends Cubit<ShopStates> {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
+  var searchController = TextEditingController();
 
   void changeSmoothIndicator(index)
   {
@@ -217,6 +219,29 @@ class ShopCubit extends Cubit<ShopStates> {
       emit(ShopGetProductDetailsSuccessState());
     }).catchError((error){
       emit(ShopGetProductDetailsErrorState(error.toString()));
+      debugPrint(error.toString());
+    });
+  }
+
+  SearchModel? searchModel;
+
+  void getSearch({required String text})
+  {
+    emit(ShopGetSearchLoadingState());
+
+    ShopHelper.postData(
+      url: searchEndPoint,
+      data:
+      {
+        'text' : text,
+      },
+      token: token ,
+      lang: language,
+    ).then((value){
+      searchModel = SearchModel.fromJson(value.data);
+      emit(ShopGetSearchSuccessState());
+    }).catchError((error){
+      emit(ShopGetSearchErrorState(error.toString()));
       debugPrint(error.toString());
     });
   }

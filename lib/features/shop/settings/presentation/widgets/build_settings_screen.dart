@@ -127,6 +127,9 @@ class BuildSettingsScreen extends StatelessWidget {
                     context,
                   ).textTheme.titleLarge!.copyWith(color: Colors.white),
                 ),
+                SizedBox(
+                  height: 30.0,
+                ),
               ],
             ),
           ),

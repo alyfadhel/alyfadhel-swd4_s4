@@ -75,3 +75,11 @@ class ShopChangeSmoothIndicatorState extends ShopStates{}
 
 class ShopChangeLanguageState extends ShopStates{}
 
+class ShopGetSearchLoadingState extends ShopStates{}
+class ShopGetSearchSuccessState extends ShopStates{}
+class ShopGetSearchErrorState extends ShopStates{
+  final String error;
+
+  ShopGetSearchErrorState(this.error);
+}
+
