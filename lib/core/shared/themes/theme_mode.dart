@@ -56,6 +56,11 @@ ThemeData getDarkMode()=>ThemeData(
       fontWeight: FontWeight.bold,
       fontFamily: 'jannah',
     ),
+    titleSmall: TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'jannah',
+    ),
     bodyMedium: TextStyle(
       color: Colors.grey,
       fontFamily: 'jannah',
@@ -66,6 +71,9 @@ ThemeData getDarkMode()=>ThemeData(
   ),
   progressIndicatorTheme: ProgressIndicatorThemeData(
     color: Colors.deepOrange,
+  ),
+  cardTheme: CardTheme(
+    color: HexColor('#1B2529'),
   ),
 );
 
@@ -123,6 +131,11 @@ ThemeData getLightMode()=>ThemeData(
       fontWeight: FontWeight.bold,
       fontFamily: 'jannah',
     ),
+    titleSmall: TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'jannah',
+    ),
     bodyMedium: TextStyle(
       color: Colors.grey,
       fontFamily: 'jannah',
@@ -133,5 +146,8 @@ ThemeData getLightMode()=>ThemeData(
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: Colors.blue,
-    )
+    ),
+  cardTheme: CardTheme(
+    color: Colors.white,
+  ),
 );
