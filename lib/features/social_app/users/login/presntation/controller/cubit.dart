@@ -27,7 +27,9 @@ class SocialLoginCubit extends Cubit<SocialLoginStates> {
     emit(SocialLoginChangePasswordVisibilityState());
   }
 
-  void getUser({required String email, required String password}) {
+  void getUser({
+    required String email,
+    required String password}) {
     emit(SocialLoginUserLoadingState());
 
     FirebaseAuth.instance

@@ -34,7 +34,10 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
     emit(SocialRegisterUserLoadingState());
 
     FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password)
+        .createUserWithEmailAndPassword(
+        email: email,
+        password: password
+    )
         .then((value) {
           debugPrint(value.user!.email);
           debugPrint(value.user!.uid);

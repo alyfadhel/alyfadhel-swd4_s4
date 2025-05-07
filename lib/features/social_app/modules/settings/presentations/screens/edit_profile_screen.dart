@@ -4,6 +4,7 @@ import 'package:swd4_s4/core/layout/social_layout/controller/cubit.dart';
 import 'package:swd4_s4/core/layout/social_layout/controller/state.dart';
 import 'package:swd4_s4/core/shared/themes/controller/cubit.dart';
 import 'package:swd4_s4/core/shared/themes/styles/icon_broken.dart';
+import 'package:swd4_s4/core/shared/widgets/my_button.dart';
 import 'package:swd4_s4/core/shared/widgets/my_form_field.dart';
 import 'package:swd4_s4/core/shared/widgets/my_txt_button.dart';
 
@@ -59,12 +60,10 @@ class EditProfileScreen extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  if(state is SocialUserUpdateLoadingState)
+                  if (state is SocialUserUpdateLoadingState)
                     LinearProgressIndicator(),
-                  if(state is SocialUserUpdateLoadingState)
-                    SizedBox(
-                      height: 30.0,
-                    ),
+                  if (state is SocialUserUpdateLoadingState)
+                    SizedBox(height: 30.0),
                   SizedBox(
                     height: 270.0,
                     child: Stack(
@@ -83,9 +82,10 @@ class EditProfileScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10.0),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: coverImage == null ?  NetworkImage(
-                                      userModel.cover,
-                                    ) : FileImage(coverImage),
+                                    image:
+                                        coverImage == null
+                                            ? NetworkImage(userModel.cover)
+                                            : FileImage(coverImage),
                                   ),
                                 ),
                               ),
@@ -120,9 +120,10 @@ class EditProfileScreen extends StatelessWidget {
                                   Theme.of(context).scaffoldBackgroundColor,
                               child: CircleAvatar(
                                 radius: 60.0,
-                                backgroundImage: profileImage == null ?  NetworkImage(
-                                  userModel.image,
-                                ) : FileImage(profileImage),
+                                backgroundImage:
+                                    profileImage == null
+                                        ? NetworkImage(userModel.image)
+                                        : FileImage(profileImage),
                               ),
                             ),
                             IconButton(
@@ -145,6 +146,53 @@ class EditProfileScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 40.0),
+                  if(SocialCubit.get(context).coverImage != null || SocialCubit.get(context).profileImage != null)
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          if(SocialCubit.get(context).coverImage != null)
+                            Expanded(
+                            child: MyButton(
+                              onPressed: () {
+                                cubit.uploadCoverImage(
+                                  name: cubit.nameController.text,
+                                  phone: cubit.phoneController.text,
+                                  bio: cubit.bioController.text,
+                                );
+                              },
+                              background: ThemeModeCubit.get(context).isDark ? Colors.blue : Colors.deepOrange,
+                              text: 'update cover',
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          if(SocialCubit.get(context).profileImage != null)
+                            Expanded(
+                            child: MyButton(
+                              onPressed: () {
+                                cubit.uploadProfileImage(
+                                  name: cubit.nameController.text,
+                                  phone: cubit.phoneController.text,
+                                  bio: cubit.bioController.text,
+                                );
+                              },
+                              background: ThemeModeCubit.get(context).isDark ? Colors.blue : Colors.deepOrange,
+                              text: 'update profile',
+                              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   MyFormField(
                     controller: cubit.nameController,
                     type: TextInputType.name,

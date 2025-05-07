@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swd4_s4/core/layout/social_layout/controller/cubit.dart';
 import 'package:swd4_s4/core/layout/social_layout/controller/state.dart';
 import 'package:swd4_s4/core/shared/themes/controller/cubit.dart';
+import 'package:swd4_s4/features/social_app/modules/post/presentation/screens/post_screen.dart';
 
 class SocialLayout extends StatelessWidget {
   const SocialLayout({super.key});
@@ -10,7 +11,14 @@ class SocialLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SocialCubit, SocialStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is SocialChangePostPageState) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PostScreen()),
+          );
+        }
+      },
       builder: (context, state) {
         var cubit = SocialCubit.get(context);
         return Scaffold(

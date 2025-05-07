@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:swd4_s4/core/layout/social_layout/controller/cubit.dart';
+import 'package:swd4_s4/core/shared/model/post_model.dart';
 import 'package:swd4_s4/core/shared/themes/styles/icon_broken.dart';
 
 class BuildSocialHomeItem extends StatelessWidget {
-  const BuildSocialHomeItem({super.key});
+  final PostModel model;
+  const BuildSocialHomeItem({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +16,14 @@ class BuildSocialHomeItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
                 CircleAvatar(
                   radius: 30.0,
                   backgroundImage: NetworkImage(
-                    'https://img.freepik.com/premium-photo/child-stretches-his-hands-sunlight-outside-window-flying-dove-world-with-branch-forces-globe-concept-peace-world-no-war-ecology_73683-3274.jpg?w=740',
+                    model.image,
                   ),
                 ),
                 SizedBox(width: 20.0),
@@ -29,7 +33,7 @@ class BuildSocialHomeItem extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'Aly Fadhel Hassan',
+                          model.name,
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         SizedBox(width: 5.0),
@@ -37,7 +41,7 @@ class BuildSocialHomeItem extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      'May,03,2025',
+                      model.dateTime,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
@@ -51,10 +55,11 @@ class BuildSocialHomeItem extends StatelessWidget {
               child: Divider(height: 1.0, color: Colors.grey),
             ),
             Text(
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+              model.text,
               textAlign: TextAlign.justify,
               style: Theme.of(context).textTheme.titleSmall,
             ),
+            if(model.postImage.isNotEmpty)
             Container(
               margin: EdgeInsets.symmetric(vertical: 10.0),
               width: double.infinity,
@@ -64,7 +69,7 @@ class BuildSocialHomeItem extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    'https://img.freepik.com/free-photo/silhouette-woman-praying-with-god_1150-5392.jpg?t=st=1746290702~exp=1746294302~hmac=5bb017f66c93044c69738957dbf1e2421583563baef8665a54f3db9ebdf09cbe&w=740',
+                    model.postImage,
                   ),
                 ),
               ),
@@ -83,7 +88,7 @@ class BuildSocialHomeItem extends StatelessWidget {
                         ),
                         SizedBox(width: 8.0),
                         Text(
-                          'Like',
+                          '1',
                           style: Theme.of(
                             context,
                           ).textTheme.titleSmall!.copyWith(color: Colors.grey),
@@ -125,7 +130,7 @@ class BuildSocialHomeItem extends StatelessWidget {
                       CircleAvatar(
                         radius: 25.0,
                         backgroundImage: NetworkImage(
-                          'https://img.freepik.com/free-photo/man-sitting-rock_417767-361.jpg?t=st=1746291792~exp=1746295392~hmac=9fb6ea14b60e102b8c9b68786ab718c939cf8e1150bd103ffc98775085591fe7&w=740',
+                          SocialCubit.get(context).socialUserModel!.image,
                         ),
                       ),
                       SizedBox(width: 20.0),
