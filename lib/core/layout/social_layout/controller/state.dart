@@ -10,6 +10,14 @@ class SocialGetUserErrorState extends SocialStates{
   SocialGetUserErrorState(this.error);
 }
 
+class SocialAllUsersLoadingState extends SocialStates{}
+class SocialAllUsersSuccessState extends SocialStates{}
+class SocialAllUsersErrorState extends SocialStates{
+  final String error;
+
+  SocialAllUsersErrorState(this.error);
+}
+
 class SocialChangeBottomNavState extends SocialStates{}
 class SocialChangePostPageState extends SocialStates{}
 
@@ -59,4 +67,22 @@ class SocialClosePostState extends SocialStates{}
 
 class SocialGetPostSuccessState extends SocialStates{}
 class SocialGetPostErrorState extends SocialStates{}
+
+// get like post
+
+class SocialLikePostSuccessState extends SocialStates{}
+class SocialLikePostErrorState extends SocialStates{
+  final String error;
+
+  SocialLikePostErrorState(this.error);
+}
+
+class SocialSendMessageSuccessState extends SocialStates{}
+class SocialSendMessageErrorState extends SocialStates{
+  final String error;
+
+  SocialSendMessageErrorState(this.error);
+}
+
+class SocialGetMessageSuccessState extends SocialStates{}
 

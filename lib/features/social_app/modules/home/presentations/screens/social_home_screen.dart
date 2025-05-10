@@ -18,7 +18,7 @@ class SocialHomeScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = SocialCubit.get(context);
         return ConditionalBuilder(
-          condition: cubit.posts.isNotEmpty,
+          condition: cubit.posts.isNotEmpty && cubit.socialUserModel != null,
           builder: (context) =>
               SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
@@ -68,6 +68,7 @@ class SocialHomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) =>
                           BuildSocialHomeItem(
                             model: cubit.posts[index],
+                            index: index,
                           ),
                       separatorBuilder: (context, index) =>
                           SizedBox(height: 10.0),

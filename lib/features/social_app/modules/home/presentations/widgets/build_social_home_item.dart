@@ -5,7 +5,8 @@ import 'package:swd4_s4/core/shared/themes/styles/icon_broken.dart';
 
 class BuildSocialHomeItem extends StatelessWidget {
   final PostModel model;
-  const BuildSocialHomeItem({super.key, required this.model});
+  final int index;
+  const BuildSocialHomeItem({super.key, required this.model, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +89,7 @@ class BuildSocialHomeItem extends StatelessWidget {
                         ),
                         SizedBox(width: 8.0),
                         Text(
-                          '1',
+                          '${SocialCubit.get(context).likes[index]}',
                           style: Theme.of(
                             context,
                           ).textTheme.titleSmall!.copyWith(color: Colors.grey),
@@ -143,17 +144,22 @@ class BuildSocialHomeItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  children: [
-                    Icon(Iconly_Broken.Heart, color: Colors.red, size: 18.0),
-                    SizedBox(width: 8.0),
-                    Text(
-                      'Like',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleSmall!.copyWith(color: Colors.grey),
-                    ),
-                  ],
+                InkWell(
+                  onTap: (){
+                    SocialCubit.get(context).likePost(SocialCubit.get(context).postId[index]);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Iconly_Broken.Heart, color: Colors.red, size: 18.0),
+                      SizedBox(width: 8.0),
+                      Text(
+                        'Like',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleSmall!.copyWith(color: Colors.grey),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
